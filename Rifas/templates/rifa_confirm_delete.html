@@ -1,0 +1,17 @@
+<!-- Rifas/templates/Rifas/rifa_confirm_delete.html -->
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h3>Eliminar Rifa</h3>
+    </div>
+    <div class="card-body">
+        <p>¿Estás seguro de eliminar la rifa "{{ object.nombre }}"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Confirmar</button>
+            <a href="{% url 'rifa_list' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

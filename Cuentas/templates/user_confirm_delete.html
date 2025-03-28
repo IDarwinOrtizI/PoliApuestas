@@ -1,0 +1,17 @@
+<!-- Cuentas/templates/Cuentas/user_confirm_delete.html -->
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h3>Eliminar Usuario</h3>
+    </div>
+    <div class="card-body">
+        <p>¿Estás seguro de eliminar a {{ object.username }}?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Confirmar</button>
+            <a href="{% url 'user_list' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

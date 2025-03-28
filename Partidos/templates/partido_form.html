@@ -1,0 +1,19 @@
+<!-- Partidos/templates/Partidos/partido_form.html -->
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h3>{% if object %}Editar Partido{% else %}Crear Partido{% endif %}</h3>
+    </div>
+    <div class="card-body">
+        <form method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="{% url 'partido_list' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

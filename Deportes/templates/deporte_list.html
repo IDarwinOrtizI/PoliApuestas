@@ -1,0 +1,31 @@
+<!-- Deportes/templates/Deportes/deporte_list.html -->
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h3>Deportes</h3>
+        <a href="{% url 'deporte_create' %}" class="btn btn-success">Crear Deporte</a>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for deporte in object_list %}
+                <tr>
+                    <td>{{ deporte.nombre }}</td>
+                    <td>
+                        <a href="{% url 'deporte_update' deporte.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{% url 'deporte_delete' deporte.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

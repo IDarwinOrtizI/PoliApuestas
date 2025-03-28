@@ -1,0 +1,35 @@
+<!-- Rifas/templates/Rifas/rifa_list.html -->
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h3>Rifas</h3>
+        <a href="{% url 'rifa_create' %}" class="btn btn-success">Crear Rifa</a>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Fecha Inicio</th>
+                    <th>Fecha Fin</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for rifa in object_list %}
+                <tr>
+                    <td>{{ rifa.nombre }}</td>
+                    <td>{{ rifa.fecha_inicio }}</td>
+                    <td>{{ rifa.fecha_fin }}</td>
+                    <td>
+                        <a href="{% url 'rifa_update' rifa.pk %}" class="btn btn-warning">Editar</a>
+                        <a href="{% url 'rifa_delete' rifa.pk %}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

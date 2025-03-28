@@ -1,0 +1,37 @@
+<!-- Partidos/templates/Partidos/partido_list.html -->
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h3>Partidos</h3>
+        <a href="{% url 'partido_create' %}" class="btn btn-success">Crear Partido</a>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Campeonato</th>
+                    <th>Fecha</th>
+                    <th>Marcador</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for partido in object_list %}
+                <tr>
+                    <td>{{ partido.campeonato.nombre }}</td>
+                    <td>{{ partido.fecha_partido|date:"d/m/Y H:i" }}</td>
+                    <td>{{ partido.marcador|default:"-" }}</td>
+                    <td>{{ partido.get_estado_display }}</td>
+                    <td>
+                        <a href="{% url 'partido_update' partido.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{% url 'partido_delete' partido.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

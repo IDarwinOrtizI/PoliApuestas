@@ -1,0 +1,35 @@
+<!-- Apuestas/templates/Apuestas/apuesta_list.html -->
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h3>Apuestas</h3>
+        <a href="{% url 'apuesta_create' %}" class="btn btn-success">Crear Apuesta</a>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Partido</th>
+                    <th>Monto</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for apuesta in object_list %}
+                <tr>
+                    <td>{{ apuesta.partido.campeonato.nombre }}</td>
+                    <td>${{ apuesta.monto_apuesta }}</td>
+                    <td>{{ apuesta.get_estado_display }}</td>
+                    <td>
+                        <a href="{% url 'apuesta_update' apuesta.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{% url 'apuesta_delete' apuesta.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

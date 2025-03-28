@@ -1,0 +1,17 @@
+<!-- Deportes/templates/Deportes/deporte_confirm_delete.html -->
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+    <div class="card-header">
+        <h3>Eliminar Deporte</h3>
+    </div>
+    <div class="card-body">
+        <p>¿Estás seguro de eliminar el deporte "{{ object.nombre }}"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Confirmar</button>
+            <a href="{% url 'deporte_list' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
